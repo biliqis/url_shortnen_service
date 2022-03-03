@@ -19,11 +19,10 @@ UrlController.getUrl = async (req, res) => {
 
 UrlController.longUrl = async (req, res) => {
   try {
-      console.log(typeof req.ip)
     const url = await UrlService.longUrl(req.params.urlId,req.ip);
-    console.log(url);
+    
     if (url) {
-      return res.redirect(200, url.originalUrl);
+      return res.redirect(307,url.originalUrl);
     }
     return res.status(404).json("No Url found");
   } catch (err) {
